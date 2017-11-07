@@ -216,6 +216,10 @@ class PerPersonJsonFormatter implements CommitDataProcessor.OutputFormatter<PerP
             json.add("reviewCountPlus1", context.serialize(identityRecord.getReviewCountPlus1()));
             json.add("reviewCountMinus1", context.serialize(identityRecord.getReviewCountMinus1()));
             json.add("reviewCountMinus2", context.serialize(identityRecord.getReviewCountMinus2()));
+            json.add("reviewReceivedCountPlus2", context.serialize(identityRecord.getReviewReceivedCountPlus2()));
+            json.add("reviewReceivedCountPlus1", context.serialize(identityRecord.getReviewReceivedCountPlus1()));
+            json.add("reviewReceivedCountMinus1", context.serialize(identityRecord.getReviewReceivedCountMinus1()));
+            json.add("reviewReceivedCountMinus2", context.serialize(identityRecord.getReviewReceivedCountMinus2()));
             json.add("allCommentsWritten", context.serialize(identityRecord.getAllCommentsWritten().size()));
             json.add("allCommentsReceived", context.serialize(identityRecord.getAllCommentsReceived().size()));
             json.add("commitCount", context.serialize(identityRecord.getCommits().size()));

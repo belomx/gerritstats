@@ -29,6 +29,11 @@ public class IdentityRecord {
     int reviewCountMinus1;
     int reviewCountMinus2;
 
+    int reviewReceivedCountPlus2;
+    int reviewReceivedCountPlus1;
+    int reviewReceivedCountMinus1;
+    int reviewReceivedCountMinus2;
+
     // updated when commit or comments written by this user are added
     long firstActiveDate = Long.MAX_VALUE;
     long lastActiveDate;
@@ -173,6 +178,22 @@ public class IdentityRecord {
         return reviewCountPlus2;
     }
 
+    public int getReviewReceivedCountMinus1() {
+        return reviewReceivedCountMinus1;
+    }
+
+    public int getReviewReceivedCountMinus2() {
+        return reviewReceivedCountMinus2;
+    }
+
+    public int getReviewReceivedCountPlus1() {
+        return reviewReceivedCountPlus1;
+    }
+
+    public int getReviewReceivedCountPlus2() {
+        return reviewReceivedCountPlus2;
+    }
+
     public List<GerritProject> getGerritProjects() {
         return new ArrayList<>(repositories.values());
     }
@@ -257,6 +278,20 @@ public class IdentityRecord {
         } else if (approval.value == -2) {
             ++reviewCountMinus2;
         }
+    }
+
+    public void addApprovalReceivedByThisIdentity (@Nonnull Commit.Identity Author, Approval approval) {
+        updateActivityTimestamps(approval.grantedOnDate);
+
+        if (approval.value == 2) {
+            ++reviewReceivedCountPlus2;
+        } else if (approval.value == 1) {
+            ++reviewReceivedCountPlus1;
+        } else if (approval.value == -1) {
+            ++reviewReceivedCountMinus1;
+        } else if (approval.value == -2) {
+            ++reviewReceivedCountMinus2;
+        } 
     }
 
     public List<Commit> getSelfReviewedCommits() {

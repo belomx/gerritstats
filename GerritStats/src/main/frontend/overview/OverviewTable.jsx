@@ -112,6 +112,54 @@ export default class OverviewTable extends React.Component {
                     </Td>
                 ),
             },
+            'reviewReceivedCountPlus2': {
+                sortFunction: Reactable.Sort.NumericInteger,
+                highlighter: new TableCellHighlighter(overviewUserdata, selectedUsers, 'reviewReceivedCountPlus2'),
+                description: 'Number of +2 reviews received by this user.',
+                header: (<span>+2<br/>received</span>),
+                cell: (record, index) => (
+                    <Td key={'reviewReceivedCountPlus2' + index} column='reviewReceivedCountPlus2'
+                        style={this.computeCellStyle(index, 'reviewReceivedCountPlus2')}>
+                        {record.reviewReceivedCountPlus2}
+                    </Td>
+                ),
+            },
+            'reviewReceivedCountPlus1': {
+                sortFunction: Reactable.Sort.NumericInteger,
+                highlighter: new TableCellHighlighter(overviewUserdata, selectedUsers, 'reviewReceivedCountPlus1'),
+                description: 'Number of +1 reviews received by this user.',
+                header: (<span>+1<br/>received</span>),
+                cell: (record, index) => (
+                    <Td key={'reviewReceivedCountPlus1' + index} column='reviewReceivedCountPlus1'
+                        style={this.computeCellStyle(index, 'reviewReceivedCountPlus1')}>
+                        {record.reviewReceivedCountPlus1}
+                    </Td>
+                ),
+            },
+            'reviewReceivedCountMinus1': {
+                sortFunction: Reactable.Sort.NumericInteger,
+                highlighter: new TableCellHighlighter(overviewUserdata, selectedUsers, 'reviewReceivedCountMinus1'),
+                description: 'Number of -1 reviews received by this user.',
+                header: (<span>-1<br/>received</span>),
+                cell: (record, index) => (
+                    <Td key={'reviewReceivedCountMinus1' + index} column='reviewReceivedCountMinus1'
+                        style={this.computeCellStyle(index, 'reviewReceivedCountMinus1')}>
+                        {record.reviewReceivedCountMinus1}
+                    </Td>
+                ),
+            },
+            'reviewReceivedCountMinus2': {
+                sortFunction: Reactable.Sort.NumericInteger,
+                highlighter: new TableCellHighlighter(overviewUserdata, selectedUsers, 'reviewReceivedCountMinus2'),
+                description: 'Number of -2 reviews received by this user.',
+                header: (<span>-2<br/>received</span>),
+                cell: (record, index) => (
+                    <Td key={'reviewReceivedCountMinus2' + index} column='reviewReceivedCountMinus2'
+                        style={this.computeCellStyle(index, 'reviewReceivedCountMinus2')}>
+                        {record.reviewReceivedCountMinus2}
+                    </Td>
+                ),
+            },
             'allCommentsWritten': {
                 sortFunction: Reactable.Sort.NumericInteger,
                 highlighter: new TableCellHighlighter(overviewUserdata, selectedUsers, 'allCommentsWritten'),
