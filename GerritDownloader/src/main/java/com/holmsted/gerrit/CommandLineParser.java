@@ -9,11 +9,11 @@ import com.holmsted.gerrit.downloaders.ssh.SshDownloader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
@@ -104,9 +104,10 @@ public class CommandLineParser {
 
     public static class DateConverter implements IStringConverter<String> {
         @Override
+	@SuppressWarnings("PMD")
         public String convert(String value) {
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 dateFormat.setLenient(false);
                 dateFormat.parse(value);
                 return value;
@@ -116,6 +117,7 @@ public class CommandLineParser {
         }
     }
 
+    @SuppressWarnings("PMD")
     public CommandLineParser() {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource("META-INF/MANIFEST.MF");
@@ -124,9 +126,7 @@ public class CommandLineParser {
             Attributes attr = manifest.getMainAttributes();
             String mainClass = attr.getValue(Attributes.Name.MAIN_CLASS);
             jCommander.setProgramName(mainClass);
-        } catch (IOException e) {
-            // Ignore.
-        }
+        } catch (IOException e) {} // NOPMD - this surely will never happen
     }
 
     public boolean parse(String[] args) {
